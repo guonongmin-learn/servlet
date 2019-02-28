@@ -4,6 +4,8 @@ import cn.cos18.bookmgr.dao.BookDao;
 import cn.cos18.bookmgr.entity.Book;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -38,7 +40,13 @@ public class ListServlet implements Servlet {
 
         List<Book> bookList = null;
 
-        writer.println("<a href='add.html'> 添加书籍 </a><br />");
+
+
+     // 利用request获得session 
+     HttpSession session = ((HttpServletRequest)servletRequest).getSession();
+
+
+        writer.println("<span > 欢迎 " + session.getAttribute("username")+"。</span>  <a href='logout'>退出</a>   <a href='add.html'> 添加书籍 </a><br />");
 
         writer.println("<thead>");
         writer.println("<tr>");
